@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Donut } from '../../models/donut.model';
 
 @Component({
   selector: 'app-donut-list',
@@ -14,17 +15,17 @@ import { Component } from '@angular/core';
   ]
 })
 export class DonutListComponent {
-  donut!: any;
-  donuts!: any[];
+  donut!: Donut;
+  donuts!: Donut[];
 
   ngOnInit(): void {
-    
+
     this.donuts = [
       {
         id: '5545',
         name: 'Just Chocolate',
         icon: 'just-chocolate',
-        price: 199, 
+        price: 199,
         description: 'For the pure chocoholic'
       },
       {
