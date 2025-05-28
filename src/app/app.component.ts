@@ -2,10 +2,9 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  template: ` <div class="app">{{message.length ? message : 'Nothing here...'}}</div> 
-  <h1 (click)="handleClick($event)" >{{ newMessage }}</h1>
-  <input [value]="message" (input)="newMessage = messageInput.value" #messageInput>
-  <p>{{ messageInput.value }}</p>
+  template: ` <div class="app">
+    <app-donut-list></app-donut-list>
+  </div>
   `,
   styles: [
     `
