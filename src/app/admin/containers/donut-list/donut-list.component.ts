@@ -29,6 +29,7 @@ export class DonutListComponent {
         name: 'Glazed Fudge',
         icon: 'glazed-fudge',
         price: 129,
+        promo: true,
         description: 'Sticky perfection',
       },
       {
