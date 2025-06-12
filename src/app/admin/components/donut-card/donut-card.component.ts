@@ -4,7 +4,7 @@ import { Donut } from '../../models/donut.model';
 @Component({
   selector: 'app-donut-card',
   template: `
-  <div class="donut-card" [style.border]="donut.promo ? '2px solid #eee' : 'none'">
+  <div class="donut-card" [ngStyle]="{border: donut.promo ? '2px solid #eee' : 'none'}">
     <img src="/assets/img/{{ donut.icon }}.svg" [alt]="donut.name" class="donut-card-icon"/>
     <div>
       <p class="donut-card-name">
