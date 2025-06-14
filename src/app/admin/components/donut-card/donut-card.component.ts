@@ -13,7 +13,7 @@ import { Donut } from '../../models/donut.model';
         {{ donut.name }}
       </p>
       <p class="donut-card-price">
-        {{ donut.price }}
+        {{ donut.price / 100 | currency: 'USD' }}
       </p>
     </div>
   </div>
