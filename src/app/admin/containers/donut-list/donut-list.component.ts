@@ -6,11 +6,17 @@ import { Donut } from '../../models/donut.model';
   template: `
     <div>
 
-      <ng-template [ngIf]="donuts.length">
-        <app-donut-card [donut]="donuts[0]"></app-donut-card>
-        <app-donut-card [donut]="donuts[1]"></app-donut-card>
-        <app-donut-card [donut]="donuts[2]"></app-donut-card>
-      </ng-template>
+      <ng-container *ngIf="donuts.length; else nothing">
+        <app-donut-card *ngFor="let donut of donuts; trackBy: trackById; index as i" [donut]="donut">
+          
+        </app-donut-card>
+
+        <ng-template ngFor [ngForOf]="donuts" let-donut let-i="index">
+          <app-donut-card [donut]="donut">
+          </app-donut-card>
+        </ng-template>
+
+      </ng-container>
 
       <ng-template #nothing>
         <p>No donuts here...</p>
@@ -47,5 +53,8 @@ export class DonutListComponent {
         description: 'Chocolate drizzled with caramel',
       },
     ];
+  }
+  trackById(index: number, value: Donut){
+    return value.id;
   }
 }
