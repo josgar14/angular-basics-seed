@@ -35,6 +35,7 @@ export class DonutListComponent {
         name: 'Just Chocolate',
         icon: 'just-chocolate',
         price: 199,
+        promo: 'limited',
         description: 'For the pure chocoholic',
       },
       {
@@ -42,7 +43,7 @@ export class DonutListComponent {
         name: 'Glazed Fudge',
         icon: 'glazed-fudge',
         price: 129,
-        promo: true,
+        promo: 'new',
         description: 'Sticky perfection',
       },
       {
@@ -51,10 +52,22 @@ export class DonutListComponent {
         icon: 'caramel-swirl',
         price: 139,
         description: 'Chocolate drizzled with caramel',
+      }, {
+        id: '23424',
+        name: 'Sour Supreme',
+        icon: 'sour-supreme',
+        price: 233,
+        description: 'For the sour advocate.',
+      }, {
+        id: 'fdfsdf',
+        name: 'Zesty Lemon',
+        icon: 'zesty-lemon',
+        price: 123,
+        description: 'Delicious lucios lemon.',
       },
     ];
   }
-  trackById(index: number, value: Donut){
+  trackById(index: number, value: Donut) {
     return value.id;
   }
 }
