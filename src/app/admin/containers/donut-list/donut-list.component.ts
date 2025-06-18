@@ -11,11 +11,6 @@ import { Donut } from '../../models/donut.model';
           
         </app-donut-card>
 
-        <ng-template ngFor [ngForOf]="donuts" let-donut let-i="index">
-          <app-donut-card [donut]="donut">
-          </app-donut-card>
-        </ng-template>
-
       </ng-container>
 
       <ng-template #nothing>
