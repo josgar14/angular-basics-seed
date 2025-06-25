@@ -6,61 +6,71 @@ import { Component } from '@angular/core';
     <form class="donut-form" #form="ngForm">
       <label>
         <span>Name</span>
-        <input type="text"
-        name="name"
-        class="input"
-        ngModel
-        required #name="ngModel">
+        <input
+          type="text"
+          name="name"
+          class="input"
+          minlength="5"
+          ngModel
+          required
+          #name="ngModel"
+        />
 
-        <p>{{name.valid}}</p>
-        <p>{{name.invalid}}</p>
-        <p>{{name.touched}}</p>
-        <p>{{name.untouched}}</p>
-        <p>{{name.pristine}}</p>
-        <p>{{name.dirty}}</p>
-        
+        <ng-container *ngIf="name.invalid && name.touched">
+          <div class="donut-form-error" *ngIf="name.errors?.required">
+            Name is required.
+          </div>
+          <div class="donut-form-error" *ngIf="name.errors?.minlength">
+            Minimum length of a name is 5!
+          </div>
+        </ng-container>
       </label>
 
       <label>
         <span>Icon</span>
         <select name="icon" class="input input--select" ngModel>
-          <option  *ngFor="let icon of icons" [ngValue]="icon">{{icon}}</option>
+          <option *ngFor="let icon of icons" [ngValue]="icon">
+            {{ icon }}
+          </option>
         </select>
       </label>
 
       <label>
         <span>Price</span>
-        <input type="number"
-        name="price"
-        class="input"
-        ngModel required>
+        <input type="number" name="price" class="input" ngModel required />
       </label>
 
       <div class="donut-form-radios">
         <p class="donut-form-radios-label">Promo:</p>
         <label>
-          <input type="radio" name="promo" [value]="undefined" ngModel>
+          <input type="radio" name="promo" [value]="undefined" ngModel />
           <span>None</span>
         </label>
         <label>
-          <input type="radio" name="promo" value="new" ngModel required>
+          <input type="radio" name="promo" value="new" ngModel required />
           <span>New</span>
         </label>
         <label>
-          <input type="radio" name="promo" value="limited" ngModel required>
+          <input type="radio" name="promo" value="limited" ngModel required />
           <span>Limited</span>
         </label>
       </div>
 
       <label>
         <span>Description</span>
-        <textarea name="description" class="input input--textarea" ngModel required></textarea>
+        <textarea
+          name="description"
+          class="input input--textarea"
+          ngModel
+          required
+        ></textarea>
       </label>
 
-      <pre>{{form.value| json}}</pre>
+      <pre>{{ form.value | json }}</pre>
     </form>
   `,
-  styles: [`
+  styles: [
+    `
       .donut-form {
         &-radios {
           display: flex;
@@ -71,15 +81,19 @@ import { Component } from '@angular/core';
           label {
             display: flex;
             align-items: center;
-            span{
+            span {
               color: #444;
               margin-bottom: 0;
             }
           }
         }
+        &-error {
+          font-size: 12px;
+          color: #e66262;
+        }
       }
-    `
-  ]
+    `,
+  ],
 })
 export class DonutFormComponent {
   icons: string[] = [
@@ -89,6 +103,6 @@ export class DonutFormComponent {
     'sour-supreme',
     'strawberry-glaze',
     'vanilla-sundae',
-    'zesty-lemon'
+    'zesty-lemon',
   ];
 }
