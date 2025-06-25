@@ -9,7 +9,8 @@ import { Component } from '@angular/core';
         <input type="text"
         name="name"
         class="input"
-        ngModel>
+        ngModel
+        required>
       </label>
 
       <label>
@@ -24,7 +25,7 @@ import { Component } from '@angular/core';
         <input type="number"
         name="price"
         class="input"
-        ngModel>
+        ngModel required>
       </label>
 
       <div class="donut-form-radios">
@@ -34,16 +35,21 @@ import { Component } from '@angular/core';
           <span>None</span>
         </label>
         <label>
-          <input type="radio" name="promo" value="new" ngModel>
+          <input type="radio" name="promo" value="new" ngModel required>
           <span>New</span>
         </label>
         <label>
-          <input type="radio" name="promo" value="limited" ngModel>
+          <input type="radio" name="promo" value="limited" ngModel required>
           <span>Limited</span>
         </label>
       </div>
 
-      <pre>{{form.value | json}}</pre>
+      <label>
+        <span>Description</span>
+        <textarea name="description" class="input input--textarea" ngModel required></textarea>
+      </label>
+
+      <pre>{{form.form.status| json}}</pre>
     </form>
   `,
   styles: [`
