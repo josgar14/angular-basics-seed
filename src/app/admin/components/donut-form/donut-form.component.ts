@@ -21,24 +21,29 @@ import { NgForm } from '@angular/forms';
           <div class="donut-form-error" *ngIf="name.errors?.required">
             Name is required.
           </div>
-          <div class="donut-form-error" *ngIf="name.errors?.minlength">
-            Minimum length of a name is 5!
-          </div>
         </ng-container>
       </label>
 
       <label>
         <span>Icon</span>
-        <select name="icon" class="input input--select" ngModel>
+        <select name="icon" class="input input--select" required ngModel #icon="ngModel">
           <option *ngFor="let icon of icons" [ngValue]="icon">
             {{ icon }}
           </option>
         </select>
+        <ng-container *ngIf="icon.invalid && icon.touched">
+          <div class="donut-form-error" *ngIf="icon.errors?.required">
+            Icon is required.
+          </div>
+        </ng-container>
       </label>
 
       <label>
         <span>Price</span>
-        <input type="number" name="price" class="input" ngModel required />
+        <input type="number" name="price" class="input" ngModel required #price="ngModel"/>
+        <ng-container *ngIf="price.invalid && price.touched">
+          <div class="donut-form-error" *ngIf="price.errors?.required">Price is required</div>
+        </ng-container>
       </label>
 
       <div class="donut-form-radios">
@@ -48,11 +53,11 @@ import { NgForm } from '@angular/forms';
           <span>None</span>
         </label>
         <label>
-          <input type="radio" name="promo" value="new" ngModel required />
+          <input type="radio" name="promo" value="new" ngModel />
           <span>New</span>
         </label>
         <label>
-          <input type="radio" name="promo" value="limited" ngModel required />
+          <input type="radio" name="promo" value="limited" ngModel/>
           <span>Limited</span>
         </label>
       </div>
@@ -64,10 +69,14 @@ import { NgForm } from '@angular/forms';
           class="input input--textarea"
           ngModel
           required
+          #description="ngModel"
         ></textarea>
+        <ng-container *ngIf="description.invalid && description.touched">
+          <div class="donut-form-error" *ngIf="description.errors?.required">Description is required</div>
+        </ng-container>
       </label>
 
-      <button type="submit" class="btn btn--green" [disabled]="form.invalid">Create</button>
+      <button type="submit" class="btn btn--green">Create</button>
 
       <pre>{{ form.value | json }}</pre>
     </form>
@@ -112,6 +121,8 @@ export class DonutFormComponent {
   handleSubmit(form: NgForm) {
     if (form.valid) {
       console.log(form.value);
+    } else {
+      form.form.markAllAsTouched();
     }
   }
 }
