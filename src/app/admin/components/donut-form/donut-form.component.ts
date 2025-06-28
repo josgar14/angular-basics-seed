@@ -13,6 +13,7 @@ import { NgForm } from '@angular/forms';
           class="input"
           minlength="5"
           ngModel
+          [ngModelOptions]="{updateOn: 'blur'}"
           required
           #name="ngModel"
         />
