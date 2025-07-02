@@ -15,13 +15,13 @@ import { DonutService } from '../../services/donut.service';
 export class DonutSingleComponent {
   donut!: Donut;
 
-  constructor(private donutService: DonutService){}
+  constructor(private donutService: DonutService) { }
 
   ngOnInit(): void {
-    this.donut = this.donutService.readOne('5545');
+    this.donut = this.donutService.readOne('xxx');
   }
 
   onCreate(donut: Donut) {
-    console.log('onCreate', donut);
+    this.donutService.create(donut);
   }
 }
