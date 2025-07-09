@@ -7,7 +7,7 @@ import { DonutService } from '../../services/donut.service';
   template: `
     <div>
 
-      <ng-container *ngIf="donuts.length; else nothing">
+      <ng-container *ngIf="donuts?.length; else nothing">
         <app-donut-card *ngFor="let donut of donuts; trackBy: trackById; index as i" [donut]="donut">
           
         </app-donut-card>
