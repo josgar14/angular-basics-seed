@@ -18,7 +18,7 @@ export class DonutSingleComponent {
   constructor(private donutService: DonutService) { }
 
   ngOnInit(): void {
-    // this.donut = this.donutService.readOne('5545');
+    this.donutService.readOne('5545').subscribe((donut: Donut) => this.donut = donut);
   }
 
   onCreate(donut: Donut) {

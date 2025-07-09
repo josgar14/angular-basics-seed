@@ -5,7 +5,7 @@ import { Donut } from '../../models/donut.model';
 @Component({
   selector: 'app-donut-form',
   template: `
-    <form class="donut-form" #form="ngForm">
+    <form class="donut-form" #form="ngForm" *ngIf="donut; else loading">
       <label>
         <span>Name</span>
         <input
@@ -13,7 +13,7 @@ import { Donut } from '../../models/donut.model';
           name="name"
           class="input"
           minlength="5"
-          [ngModel]="donut.name"
+          [ngModel]="donut?.name"
           [ngModelOptions]="{updateOn: 'blur'}"
           required
           #name="ngModel"
@@ -28,7 +28,7 @@ import { Donut } from '../../models/donut.model';
 
       <label>
         <span>Icon</span>
-        <select name="icon" class="input input--select" required [ngModel]="donut.icon" #icon="ngModel">
+        <select name="icon" class="input input--select" required [ngModel]="donut?.icon" #icon="ngModel">
           <option *ngFor="let icon of icons" [ngValue]="icon">
             {{ icon }}
           </option>
@@ -90,6 +90,8 @@ import { Donut } from '../../models/donut.model';
       <pre>{{ donut | json }}</pre>
       <pre>{{ form.value | json }}</pre>
     </form>
+
+    <ng-template #loading>Loading...</ng-template>
   `,
   styles: [
     `
