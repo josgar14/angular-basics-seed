@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Donut } from '../models/donut.model';
-import { HttpClient } from '@angular/common/http'
+import { HttpClient } from '@angular/common/http';
 import { map, of, tap } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DonutService {
-
   private donuts: Donut[] = [];
 
   constructor(private http: HttpClient) { }
@@ -18,7 +17,9 @@ export class DonutService {
     }
 
     return this.http.get<Donut[]>(`/api/donuts`).pipe(
-      tap((donuts) => { this.donuts = donuts })
+      tap((donuts) => {
+        this.donuts = donuts;
+      })
     );
   }
 
@@ -33,22 +34,28 @@ export class DonutService {
 
         return { name: '', icon: '', price: 0, description: '' };
       })
-    )
-
+    );
   }
 
   create(payload: Donut) {
-    return this.http.post<Donut>(`/api/donuts`, payload).pipe(tap((donut) => { this.donuts = [...this.donuts, donut] }));
+    return this.http.post<Donut>(`/api/donuts`, payload).pipe(
+      tap((donut) => {
+        this.donuts = [...this.donuts, donut];
+      })
+    );
   }
 
   update(payload: Donut) {
-    this.donuts = this.donuts.map((donut: Donut) => {
-      if (donut.id === payload.id) {
-        return payload;
-      }
-      return donut;
-    });
-    console.log(this.donuts);
+    return this.http.put<Donut>(`/api/donuts/${payload.id}`, payload).pipe(
+      tap((donut) => {
+        this.donuts = this.donuts.map((item: Donut) => {
+          if (item.id === donut.id) {
+            return payload;
+          }
+          return item;
+        });
+      })
+    );
   }
 
   delete(payload: Donut) {

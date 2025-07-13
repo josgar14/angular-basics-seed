@@ -27,7 +27,8 @@
       "id": "23424",
       "name": "Sour Supreme",
       "icon": "sour-supreme",
-      "price": 233,
+      "price": 234,
+      "promo": "new",
       "description": "For the sour advocate."
     },
     {

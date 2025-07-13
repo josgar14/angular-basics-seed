@@ -18,7 +18,7 @@ export class DonutSingleComponent {
   constructor(private donutService: DonutService) { }
 
   ngOnInit(): void {
-    this.donutService.readOne('xxx').subscribe((donut: Donut) => this.donut = donut);
+    this.donutService.readOne('23424').subscribe((donut: Donut) => this.donut = donut);
   }
 
   onCreate(donut: Donut) {
@@ -26,7 +26,7 @@ export class DonutSingleComponent {
   }
 
   onUpdate(donut: Donut) {
-    this.donutService.update(donut);
+    this.donutService.update(donut).subscribe(() => console.log("Updated successfully"));
   }
 
   onDelete(donut: Donut) {
