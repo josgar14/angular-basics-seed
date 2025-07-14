@@ -9,7 +9,7 @@ import { map, of, tap } from 'rxjs';
 export class DonutService {
   private donuts: Donut[] = [];
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   read() {
     if (this.donuts.length) {
@@ -59,7 +59,12 @@ export class DonutService {
   }
 
   delete(payload: Donut) {
-    this.donuts = this.donuts.filter((donut: Donut) => donut.id !== payload.id);
-    console.log(this.donuts);
+    return this.http.delete<Donut>(`/api/donuts/${payload.id}`).pipe(
+      tap(() => {
+        this.donuts = this.donuts.filter(
+          (donut: Donut) => donut.id !== payload.id
+        );
+      })
+    );
   }
 }

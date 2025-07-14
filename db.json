@@ -37,14 +37,6 @@
       "icon": "zesty-lemon",
       "price": 123,
       "description": "Delicious lucios lemon."
-    },
-    {
-      "name": "new donut",
-      "icon": "sour-supreme",
-      "price": 223,
-      "promo": "limited",
-      "description": "very expensive!",
-      "id": "BDQLQKf"
     }
   ]
 }
