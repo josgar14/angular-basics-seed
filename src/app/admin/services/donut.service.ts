@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Donut } from '../models/donut.model';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { catchError, map, of, retry, tap, throwError } from 'rxjs';
+import { catchError, delay, map, of, retryWhen, take, tap, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -20,7 +20,9 @@ export class DonutService {
       tap((donuts) => {
         this.donuts = donuts;
       }),
-      retry(2),
+      retryWhen((errors) => {
+        return errors.pipe(delay(5000), take(2));
+      }),
       catchError(this.handleError)
     );
   }
