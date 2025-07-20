@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
     <header class="header">
       <img class="logo" src="/assets/img/logo.svg" alt="Ultimate Donuts">
     </header>
-    <app-donut-single></app-donut-single>
+    <router-outlet></router-outlet>
   </div>
   `,
   styles: [
