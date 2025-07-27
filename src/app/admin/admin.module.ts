@@ -13,7 +13,7 @@ import { DonutFormComponent } from './components/donut-form/donut-form.component
 
 export const routes: Routes = [
   { path: 'donuts', component: DonutListComponent },
-  { path: 'donut', component: DonutSingleComponent },
+  { path: 'donuts/new', component: DonutSingleComponent },
   { path: '', pathMatch: 'full', redirectTo: 'donuts' },
 ];
 
@@ -30,10 +30,6 @@ export const routes: Routes = [
     DonutSingleComponent,
     DonutFormComponent,
   ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    RouterModule.forChild(routes),
-  ],
+  imports: [CommonModule, FormsModule, RouterModule.forChild(routes)],
 })
 export class AdminModule {}
