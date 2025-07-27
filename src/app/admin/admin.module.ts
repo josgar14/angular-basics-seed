@@ -14,6 +14,7 @@ import { DonutFormComponent } from './components/donut-form/donut-form.component
 export const routes: Routes = [
   { path: 'donuts', component: DonutListComponent },
   { path: 'donuts/new', component: DonutSingleComponent },
+  { path: 'donuts/:id', component: DonutSingleComponent },
   { path: '', pathMatch: 'full', redirectTo: 'donuts' },
 ];
 
