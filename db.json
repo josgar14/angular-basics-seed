@@ -4,7 +4,7 @@
       "id": "5545",
       "name": "Just Chocolate",
       "icon": "just-chocolate",
-      "price": 199,
+      "price": 195,
       "promo": "limited",
       "description": "For the pure chocoholicp"
     },
@@ -37,6 +37,14 @@
       "icon": "zesty-lemon",
       "price": 123,
       "description": "Delicious lucios lemon."
+    },
+    {
+      "name": "Chocolate Dubai",
+      "icon": "just-chocolate",
+      "price": 500,
+      "promo": "new",
+      "description": "Full of chocolate and pistacho.",
+      "id": "VjEdsR0"
     }
   ]
 }
