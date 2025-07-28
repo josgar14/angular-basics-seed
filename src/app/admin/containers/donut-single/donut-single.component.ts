@@ -9,6 +9,7 @@ import { ActivatedRoute } from '@angular/router';
     <div>
       <app-donut-form
         [donut]="donut"
+        [isEdit]="isEdit"
         (create)="onCreate($event)"
         (update)="onUpdate($event)"
         (delete)="onDelete($event)"
@@ -19,6 +20,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class DonutSingleComponent {
   donut!: Donut;
+  isEdit!: boolean;
 
   constructor(
     private route: ActivatedRoute,
@@ -32,6 +34,8 @@ export class DonutSingleComponent {
     this.donutService
       .readOne(id)
       .subscribe((donut: Donut) => (this.donut = donut));
+    
+    this.isEdit = this.route.snapshot.data['isEdit'];
   }
 
   onCreate(donut: Donut) {

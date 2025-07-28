@@ -14,7 +14,7 @@ import { Donut } from '../../models/donut.model';
           class="input"
           minlength="5"
           [ngModel]="donut?.name"
-          [ngModelOptions]="{updateOn: 'blur'}"
+          [ngModelOptions]="{ updateOn: 'blur' }"
           required
           #name="ngModel"
         />
@@ -28,7 +28,13 @@ import { Donut } from '../../models/donut.model';
 
       <label>
         <span>Icon</span>
-        <select name="icon" class="input input--select" required [ngModel]="donut?.icon" #icon="ngModel">
+        <select
+          name="icon"
+          class="input input--select"
+          required
+          [ngModel]="donut?.icon"
+          #icon="ngModel"
+        >
           <option *ngFor="let icon of icons" [ngValue]="icon">
             {{ icon }}
           </option>
@@ -42,24 +48,48 @@ import { Donut } from '../../models/donut.model';
 
       <label>
         <span>Price</span>
-        <input type="number" name="price" class="input" [ngModel]="donut.price" required #price="ngModel"/>
+        <input
+          type="number"
+          name="price"
+          class="input"
+          [ngModel]="donut.price"
+          required
+          #price="ngModel"
+        />
         <ng-container *ngIf="price.invalid && price.touched">
-          <div class="donut-form-error" *ngIf="price.errors?.required">Price is required</div>
+          <div class="donut-form-error" *ngIf="price.errors?.required">
+            Price is required
+          </div>
         </ng-container>
       </label>
 
       <div class="donut-form-radios">
         <p class="donut-form-radios-label">Promo:</p>
         <label>
-          <input type="radio" name="promo" [value]="undefined" [ngModel]="donut.promo" />
+          <input
+            type="radio"
+            name="promo"
+            [value]="undefined"
+            [ngModel]="donut.promo"
+          />
           <span>None</span>
         </label>
         <label>
-          <input type="radio" name="promo" value="new" [ngModel]="donut.promo" />
+          <input
+            type="radio"
+            name="promo"
+            value="new"
+            [ngModel]="donut.promo"
+          />
           <span>New</span>
         </label>
         <label>
-          <input type="radio" name="promo" value="limited" [ngModel]="donut.promo"/>
+          <input
+            type="radio"
+            name="promo"
+            value="limited"
+            [ngModel]="donut.promo"
+          />
           <span>Limited</span>
         </label>
       </div>
@@ -74,21 +104,52 @@ import { Donut } from '../../models/donut.model';
           #description="ngModel"
         ></textarea>
         <ng-container *ngIf="description.invalid && description.touched">
-          <div class="donut-form-error" *ngIf="description.errors?.required">Description is required</div>
+          <div class="donut-form-error" *ngIf="description.errors?.required">
+            Description is required
+          </div>
         </ng-container>
       </label>
 
-      <button type="button" class="btn btn--green" (click)="handleCreate(form)">Create</button>
-      <button type="button" class="btn btn--green" [disabled]="form.untouched" (click)="handleUpdate(form)">Update</button>
-      <button type="button" class="btn btn--green" (click)="handleDelete()">Delete</button>
-      <button type="button" class="btn btn--gray" (click)="form.resetForm({name: 'Initial State'})">Reset Form</button>
+      <button
+        type="button"
+        class="btn btn--green"
+        *ngIf="!isEdit"
+        (click)="handleCreate(form)"
+      >
+        Create
+      </button>
+      <button
+        type="button"
+        class="btn btn--green"
+        *ngIf="isEdit"
+        [disabled]="form.untouched"
+        (click)="handleUpdate(form)"
+      >
+        Update
+      </button>
+      <button
+        type="button"
+        class="btn btn--green"
+        *ngIf="isEdit"
+        (click)="handleDelete()"
+      >
+        Delete
+      </button>
+      <button
+        type="button"
+        class="btn btn--gray"
+        *ngIf="form.touched || isEdit"
+        (click)="form.resetForm({ name: 'Initial State' })"
+      >
+        Reset Form
+      </button>
 
       <div class="donut-form-working" *ngIf="form.valid && form.submitted">
         Working...
       </div>
 
-      <pre>{{ donut | json }}</pre>
-      <pre>{{ form.value | json }}</pre>
+      <!-- <pre>{{ donut | json }}</pre>
+      <pre>{{ form.value | json }}</pre> -->
     </form>
 
     <ng-template #loading>Loading...</ng-template>
@@ -111,7 +172,7 @@ import { Donut } from '../../models/donut.model';
             }
           }
         }
-        &-working{
+        &-working {
           font-size: 12px;
           font-style: italic;
           margin: 10px 0px;
@@ -125,13 +186,12 @@ import { Donut } from '../../models/donut.model';
   ],
 })
 export class DonutFormComponent {
-
   @Input() donut!: Donut;
+  @Input() isEdit!: boolean;
+
   @Output() create = new EventEmitter<Donut>();
   @Output() update = new EventEmitter<Donut>();
   @Output() delete = new EventEmitter<Donut>();
-
-
 
   icons: string[] = [
     'caramel-swirl',
@@ -145,7 +205,7 @@ export class DonutFormComponent {
 
   handleCreate(form: NgForm) {
     if (form.valid) {
-      this.create.emit(form.value)
+      this.create.emit(form.value);
     } else {
       form.form.markAllAsTouched();
     }
@@ -153,7 +213,7 @@ export class DonutFormComponent {
 
   handleUpdate(form: NgForm) {
     if (form.valid) {
-      this.update.emit({id: this.donut.id, ...form.value})
+      this.update.emit({ id: this.donut.id, ...form.value });
     } else {
       form.form.markAllAsTouched();
     }
@@ -161,7 +221,7 @@ export class DonutFormComponent {
 
   handleDelete() {
     if (confirm(`Really delete ${this.donut.name}?`)) {
-      this.delete.emit({...this.donut});
+      this.delete.emit({ ...this.donut });
     }
   }
 }
