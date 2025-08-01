@@ -27,6 +27,10 @@ Angular Basics v15: Starter Project
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli).
 
+## Run the project (Josue)
+
+In a console run npm start, then go to the package.json file and run the database script 'db'.
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
